@@ -11,10 +11,10 @@
       name: mongodb-org
       state: present
   - name: allow remote connections
-    replace:
+    lineinfile:
       path: /etc/mongod.conf
-      regexp: '127.0.0.1'
-      replace: '0.0.0.0'
+      regexp: 'bindIp'
+      line: '  bindIp: 0.0.0.0'
   - name: start and enable mongodb
     service:
       name: mongod
